@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday 🎉</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+}
+
+/* Countdown */
+#countdown{
+  font-size:120px;
+  color:white;
+  font-weight:bold;
+  animation: pop 1s infinite;
+}
+
+@keyframes pop{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.2);}
+  100%{transform:scale(1);}
+}
+
+/* Birthday Page */
+#birthday{
+  position:absolute;
+  text-align:center;
+  color:white;
+  padding:20px;
+  max-width:650px;
+  transform: translateY(-100%);
+  opacity:0;
+  transition: all 1s ease;
+}
+
+#birthday.show{
+  transform: translateY(0);
+  opacity:1;
+}
+
+.photo-box{
+  width:220px;
+  height:220px;
+  border:4px dashed white;
+  border-radius:15px;
+  margin:20px auto;
+  overflow:hidden;
+  background: rgba(255,255,255,0.2);
+}
+
+.photo-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.friendship-text{
+  background: rgba(255,255,255,0.25);
+  padding:15px;
+  border-radius:12px;
+  font-size:21px;
+  line-height:1.6;
+}
+</style>
+</head>
+
+<body onclick="document.getElementById('bgMusic').play()">
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div id="countdown">5</div>
+
+<div id="birthday">
+  <h1>Happy Birthday Prem bro!</h1>
+  <p>Wishing you lots of happiness 💖</p>
+
+  <div class="photo-box">
+    <img src="Prem.jpg">
+  </div>
+
+  <p>Enjoy your special day 🥳</p>
+
+  <div class="friendship-text">
+    Our friendship is more than words,  
+    more than memories,  
+    and stronger with every year 💫  
+    <br><br>
+    Happy Birthday to my forever bro 🎂
+  </div>
+</div>
+
+<script>
+let count = 5;
+let countdown = document.getElementById("countdown");
+let birthday = document.getElementById("birthday");
+let music = document.getElementById("bgMusic"); 
+
+let timer = setInterval(() => {
+  count--;
+  countdown.innerText = count;
+
+  if(count === 0){
+    clearInterval(timer);
+    countdown.style.display = "none";
+    birthday.classList.add("show");
+
+    music.play().catch(() => {
+      console.log("Autoplay blocked");
+    });
+  }
+}, 1000);
+</script>
+
+</body>
+</html>
